@@ -27,6 +27,7 @@ cd lang-playground/20260924-Oberon
 
 | 公開日 | 言語 | ディレクトリ |
 |---|---|---|
+| 2026-09-22 | Standard ML | [20260922-Standard_ML](20260922-Standard_ML) |
 | 2026-09-24 | Oberon | [20260924-Oberon](20260924-Oberon) |
 
 ## ディレクトリの中身
