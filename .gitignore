@@ -1,0 +1,9 @@
+# 各環境の生成物
+*/demo/*.c
+*/demo/*.h
+*/demo/*.sym
+*.cast
+
+# 制作物 (この repo の対象外)
+proto-*/
+.DS_Store

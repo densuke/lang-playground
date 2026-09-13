@@ -1,0 +1,7 @@
+# voc の生成物 (C ソース・シンボルファイル・実行ファイル)
+*.c
+*.h
+*.sym
+Hello
+Fib
+Shapes
