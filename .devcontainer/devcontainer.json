@@ -1,0 +1,13 @@
+{
+  "name": "lang-playground",
+  "image": "mcr.microsoft.com/devcontainers/base:debian",
+  "features": {
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {}
+  },
+  "postCreateMessage": "各言語のディレクトリへ移動して ./run.sh を実行してください (例: cd 20260922-Standard_ML && ./run.sh)",
+  "customizations": {
+    "vscode": {
+      "extensions": ["ms-azuretools.vscode-docker"]
+    }
+  }
+}

@@ -5,7 +5,19 @@ YouTube「古今東西 プログラミング言語紹介」で取り上げた言
 動画を見て「ちょっと触ってみたい」と思ったときに、処理系の入れ方で消耗しないように
 用意しています。1 コマンドで処理系のシェルに入れることを基準にしています。
 
-## 使い方
+## ブラウザだけで試す (インストール不要)
+
+このリポジトリの **Code → Codespaces → Create codespace on main** で、ブラウザ上に環境が
+立ち上がります。Docker も入った状態なので、そのまま動かせます。
+
+```bash
+cd 20260922-Standard_ML
+./run.sh
+```
+
+手元に何も入れずに試せます。Codespaces は個人アカウントでも毎月の無料枠があります。
+
+## 手元で試す
 
 ```bash
 git clone https://github.com/densuke/lang-playground.git
