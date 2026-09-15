@@ -41,6 +41,11 @@ cd lang-playground/20260924-Oberon
 |---|---|---|
 | 2026-09-22 | Standard ML | [20260922-Standard_ML](20260922-Standard_ML) |
 | 2026-09-24 | Oberon | [20260924-Oberon](20260924-Oberon) |
+| 2026-09-28 | Lua | [20260928-Lua](20260928-Lua) |
+| 2026-09-29 | Racket | [20260929-Racket](20260929-Racket) |
+| 2026-09-30 | Julia | [20260930-Julia](20260930-Julia) |
+| 2026-10-01 | Nim | [20261001-Nim](20261001-Nim) |
+| 2026-10-02 | Grass | [20261002-Grass](20261002-Grass) |
 
 ## ディレクトリの中身
 
@@ -48,7 +53,7 @@ cd lang-playground/20260924-Oberon
 |---|---|
 | `Dockerfile` | 処理系を入れた環境の定義 |
 | `run.sh` | 環境に入るためのスクリプト |
-| `demo.sh` | 動画で流したコマンドを順に実行する |
+| `demo.sh` | 動画で流したコマンドを順に実行する (`./run.sh bash -s < demo.sh`) |
 | `README.md` | その言語の説明、実行結果、つまずきやすい点 |
 | `demo/` | 動画に出てきたコード |
 

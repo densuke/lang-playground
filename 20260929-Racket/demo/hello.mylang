@@ -1,0 +1,4 @@
+#lang reader "mylang/reader.rkt"
+(displayln (+ 1 2))
+(displayln (* 6 7))
+(displayln (+ (* 3 4) 5))
