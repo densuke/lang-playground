@@ -43,7 +43,7 @@ BSD ライセンスなので、著作権表示を残したまま再配布でき�
 |---|---|
 | `demo/w.grass` | `wWWwwww` の 7 文字。`w` を 1 文字出力する最小のプログラム |
 | `demo/succ.grass` | `wWWWwwwwWWWw`。`Succ` で 1 進めて `x` を出力する |
-| `demo/helloworld.grass` | `Hello,world!` を出力する。**1000 文字を超える草原** |
+| `demo/helloworld.grass` | `Hello,world!` を出力する。**1000 文字を超える草原** (下記の出典より) |
 
 ## 実行結果
 
@@ -86,4 +86,11 @@ wwww   env の上から 4 番目 (= 文字 w) に適用する
 ## ライセンス
 
 `grass.rb` は Copyright (C) 2006, 2007 UENO Katsuhiro, BSD 2 条項ライセンスです
-(ファイル冒頭の表示をそのまま残しています)。`demo/*.grass` は自由に使ってください。
+(ファイル冒頭の表示をそのまま残しています)。
+
+`demo/helloworld.grass` は**このリポジトリで書いたものではありません。**
+[無駄と文化「Grass言語でHello,world!に挑戦」](https://blog.mudatobunka.org/entry/2025/11/04/100000)
+に掲載されているプログラムをそのまま使っています (実行して出力を確認済み)。
+再利用の条件は出典元を参照してください。
+
+`demo/w.grass` と `demo/succ.grass` は仕様から組み立てたものなので、自由に使ってください。

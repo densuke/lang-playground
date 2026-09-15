@@ -11,7 +11,7 @@
 ```
 
 `container` (macOS 26 の Apple container) / `docker` / `podman` のいずれかがあれば動きます。
-Julia は Debian のパッケージから外れているので、公式イメージ (`julia:1`) を使っています。
+trixie には `julia` のパッケージが無いので、公式イメージ (`julia:1`) を使っています。
 
 ## 処理系について
 

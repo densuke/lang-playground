@@ -19,7 +19,8 @@
 アプリケーションへ組み込むことを前提に作られています。
 
 世の中で動いている Lua は 5.1 系も多いので注意してください。Neovim の設定や
-LuaJIT (Love2D・OpenResty など) は 5.1 互換で、`goto` や整数型がありません。
+LuaJIT (Love2D・OpenResty など) は 5.1 互換で、**整数型がありません** (`math.type` が無い)。
+`goto` は LuaJIT 2.0 以降なら使えます。
 
 ```
 $ ./run.sh
