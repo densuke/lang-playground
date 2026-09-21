@@ -1,0 +1,15 @@
+       IDENTIFICATION DIVISION.
+       PROGRAM-ID. BASICS.
+       DATA DIVISION.
+       WORKING-STORAGE SECTION.
+       01  WS-PRICE    PIC 9(5)V99 VALUE 1980.50.
+       01  WS-QTY      PIC 9(3)    VALUE 3.
+       01  WS-TOTAL    PIC 9(7)V99 VALUE ZERO.
+       01  WS-PRINT    PIC ZZZ,ZZZ.99.
+       PROCEDURE DIVISION.
+           DISPLAY "Hello, World!".
+           COMPUTE WS-TOTAL = WS-PRICE * WS-QTY.
+           DISPLAY "RAW   : " WS-TOTAL.
+           MOVE WS-TOTAL TO WS-PRINT.
+           DISPLAY "GOKEI : " WS-PRINT.
+           STOP RUN.

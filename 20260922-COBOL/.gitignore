@@ -1,0 +1,4 @@
+# cobc -x が吐く実行ファイル (拡張子が無いので名前で並べる)
+basics
+decimal
+freeform
