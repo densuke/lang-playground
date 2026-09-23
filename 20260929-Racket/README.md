@@ -36,9 +36,9 @@ GUI の開発環境 DrRacket もありますが、このイメージには入れ
 |---|---|
 | `demo/basics.rkt` | Hello World・フィボナッチ・`match` によるパターンマッチ |
 | `demo/macro.rkt` | マクロ。**言語に無い `unless` と `while` を足す** |
-| `demo/hello.mylang` | **自作言語で書いたファイル。** `+` `*` `displayln` しか使えない |
+| `demo/hello.mylang` | **自作言語で書いたファイル。** 括弧を使わず `1 + 2` と書く |
 | `demo/mylang/main.rkt` | 自作言語の語彙 (使える名前をここで決める) |
-| `demo/mylang/reader.rkt` | 自作言語の読み方 (2 行) |
+| `demo/mylang/lang/reader.rkt` | 自作言語の読み方 (1 行を 1 つの式として読む) |
 
 ## 実行結果
 
@@ -61,9 +61,10 @@ $ ./run.sh racket /work/hello.mylang
 17
 ```
 
-`hello.mylang` の 1 行目は `#lang reader "mylang/reader.rkt"` です。**Racket 本体の名前は
-1 つも見えていません。** `main.rkt` が `provide` した名前だけが使えます。試しに `(- 5 1)` を足すと
-`-: unbound identifier` で怒られます。引き算は許していないからです。
+`hello.mylang` の 1 行目は `#lang mylang` です。**2 行目から先に括弧は 1 つもありません。**
+`1 + 2` のような中置の式を `reader.rkt` が読み取り、Racket の式に組み直しています。
+使えるのは `+` と `*` だけ (`*` が先)。試しに `5 - 1` を足すとエラーになります。
+引き算は許していないからです。
 
 ## つまずきやすい点
 
@@ -75,9 +76,10 @@ $ ./run.sh racket /work/hello.mylang
 **`'(1 2 3)` のクォートは「評価しない」という印です。** 付け忘れると `1` を関数として
 呼びに行って落ちます。
 
-**自作言語のモジュールパスは、読み込まれるファイルから見た相対パスです。**
-`reader.rkt` の中に `"main.rkt"` と書いても、探されるのは `.mylang` があるディレクトリです。
-ここでは `"mylang/main.rkt"` と書いています。
+**`#lang mylang` が動くのは `PLTCOLLECTS` のおかげです。** `#lang mylang` は
+`mylang/lang/reader.rkt` を collection から探します。Dockerfile で `PLTCOLLECTS=/work:` を
+設定し、`/work` (= `demo/`) を collection の置き場にしています。コンテナの外で動かすときは
+`PLTCOLLECTS="$PWD/demo:" racket demo/hello.mylang` のように同じ設定を渡してください。
 
 ## ライセンス
 

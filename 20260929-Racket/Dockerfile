@@ -8,5 +8,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         racket \
     && rm -rf /var/lib/apt/lists/*
 
+# /work を collection の置き場にする。#lang mylang が /work/mylang/lang/reader.rkt を読む。
+ENV PLTCOLLECTS=/work:
 WORKDIR /work
 CMD ["racket"]
