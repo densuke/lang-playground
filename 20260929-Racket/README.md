@@ -35,7 +35,7 @@ GUI の開発環境 DrRacket もありますが、このイメージには入れ
 | ファイル | 内容 |
 |---|---|
 | `demo/basics.rkt` | Hello World・フィボナッチ・`match` によるパターンマッチ |
-| `demo/macro.rkt` | マクロ。**言語に無い `unless` と `while` を足す** |
+| `demo/macro.rkt` | マクロ。**既存の `unless` と同じものを自作し、言語に無い `while` を足す** |
 | `demo/hello.mylang` | **自作言語で書いたファイル。** 括弧を使わず `1 + 2` と書く |
 | `demo/mylang/main.rkt` | 自作言語の語彙 (使える名前をここで決める) |
 | `demo/mylang/lang/reader.rkt` | 自作言語の読み方 (1 行を 1 つの式として読む) |
