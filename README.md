@@ -46,6 +46,7 @@ cd lang-playground/20260924-Oberon
 | 2026-09-30 | Julia | [20260930-Julia](20260930-Julia) |
 | 2026-10-01 | Nim | [20261001-Nim](20261001-Nim) |
 | 2026-10-02 | Grass | [20261002-Grass](20261002-Grass) |
+| 2026-10-09 | ArnoldC | [20261009-ArnoldC](20261009-ArnoldC) |
 
 ## ディレクトリの中身
 
