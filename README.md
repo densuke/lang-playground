@@ -59,6 +59,28 @@ cd lang-playground/20260924-Oberon
 
 `demo/` の中身は**動画で見せたコードと同じもの**です。書き写す必要はありません。
 
+## 動画用に端末を収録するとき (制作側の memo)
+
+`asciinema` で録る。**サイズ指定は `--window-size`**。`--cols` / `--rows` というオプションは
+無く、指定しても黙って無視されて 80x24 で録れてしまう。
+
+```bash
+asciinema rec --overwrite --idle-time-limit 2 --window-size 68x16 \
+    -c <収録スクリプト> out.cast
+```
+
+**`./run.sh bash -s < demo.sh` は収録では動かない。** 上の表に書いてある対話用の
+書き方で、`run.sh` は stdout が端末のときだけ `-t` を付けるため、stdin がファイル
+リダイレクトだと container が失敗して **cast が 1 秒足らずで終わる**。収録では stdin を
+使わない形にする。
+
+```bash
+./run.sh bash -c "$(cat <中で流すスクリプト>)"
+```
+
+**コンテナの起動は 1 回にまとめる。** `run.sh` をコマンドごとに呼ぶと、6 段階の起動
+スピナーが毎回映り込む。
+
 ## 動作環境
 
 `linux/arm64` を既定にしています。Apple Silicon の Mac と ARM の Linux でそのまま動きます。
