@@ -1,0 +1,7 @@
+-- フィボナッチ数列をストリームとして出す。入力は無く、時刻が進むたびに次の値が出る。
+node fib() returns (f: int);
+var prev: int;
+let
+  prev = 0 -> pre(f);          -- 1 つ前の f (最初の時刻は 0)
+  f    = 1 -> pre(f) + pre(prev);  -- 1, 1, 2, 3, 5, 8, ...
+tel

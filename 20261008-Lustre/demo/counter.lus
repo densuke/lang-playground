@@ -1,0 +1,6 @@
+-- カウンタ。reset が真なら 0 に戻し、それ以外は 1 ずつ増やす。
+-- "->" は「最初の時刻だけ左、2 回目以降は右」、pre は「1 つ前の時刻の値」。
+node counter(reset: bool) returns (n: int);
+let
+  n = 0 -> if reset then 0 else pre(n) + 1;
+tel

@@ -1,0 +1,5 @@
+-- 誤り: x が自分自身の現在値に依存している (因果ループ)。pre を挟めば通る。
+node bad(a: int) returns (x: int);
+let
+  x = a + x;
+tel
