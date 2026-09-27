@@ -1,0 +1,14 @@
+; Logo is a cousin of Lisp: words and lists are the basic data.
+print first [apple banana cherry]
+print butfirst [apple banana cherry]
+print map [? * ?] [1 2 3 4 5]
+
+; A recursive procedure. :n is the input (the colon means "the value of").
+to countdown :n
+  if :n = 0 [print "liftoff! stop]
+  print :n
+  countdown :n - 1
+end
+
+countdown 3
+bye
