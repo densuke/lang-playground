@@ -41,7 +41,16 @@ cd lang-playground/20260924-Oberon
 | 公開日 | 言語 | ディレクトリ |
 |---|---|---|
 | 2026-07-14 | Prolog | [20260714-Prolog](20260714-Prolog) |
+| 2026-08-18 | Logo | [20260818-Logo](20260818-Logo) |
+| 2026-08-20 | Scheme | [20260820-Scheme](20260820-Scheme) |
+| 2026-08-21 | Fractran | [20260821-Fractran](20260821-Fractran) |
+| 2026-08-24 | Ada | [20260824-Ada](20260824-Ada) |
+| 2026-08-28 | Unlambda | [20260828-Unlambda](20260828-Unlambda) |
+| 2026-09-02 | PostScript | [20260902-PostScript](20260902-PostScript) |
+| 2026-09-10 | REXX | [20260910-REXX](20260910-REXX) |
+| 2026-09-11 | Malbolge | [20260911-Malbolge](20260911-Malbolge) |
 | 2026-09-15 | Haskell | [20260915-Haskell](20260915-Haskell) |
+| 2026-09-18 | Subleq | [20260918-Subleq](20260918-Subleq) |
 | 2026-09-22 | COBOL | [20260922-COBOL](20260922-COBOL) |
 | 2026-09-22 | Standard ML | [20260922-Standard_ML](20260922-Standard_ML) |
 | 2026-09-23 | Tcl | [20260923-Tcl](20260923-Tcl) |
