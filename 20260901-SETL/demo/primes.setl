@@ -1,0 +1,6 @@
+-- 2 から n までの p のうち、2 から p-1 のどの i で割っても余りが 0 にならないもの。
+-- 数学の定義をそのまま書く。ループも添字も出てこない。
+n := 50;
+primes := {p in {2..n} | forall i in {2..p-1} | p mod i /= 0};
+print(primes);
+print(#primes, "primes up to", n);
