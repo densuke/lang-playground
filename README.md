@@ -41,10 +41,14 @@ cd lang-playground/20260924-Oberon
 | 公開日 | 言語 | ディレクトリ |
 |---|---|---|
 | 2026-07-14 | Prolog | [20260714-Prolog](20260714-Prolog) |
+| 2026-08-17 | Self | [20260817-Self](20260817-Self) |
 | 2026-08-18 | Logo | [20260818-Logo](20260818-Logo) |
+| 2026-08-19 | Eiffel | [20260819-Eiffel](20260819-Eiffel) |
 | 2026-08-20 | Scheme | [20260820-Scheme](20260820-Scheme) |
 | 2026-08-21 | Fractran | [20260821-Fractran](20260821-Fractran) |
 | 2026-08-24 | Ada | [20260824-Ada](20260824-Ada) |
+| 2026-08-25 | Inform 7 | [20260825-Inform7](20260825-Inform7) |
+| 2026-08-26 | Smalltalk | [20260826-Smalltalk](20260826-Smalltalk) |
 | 2026-08-28 | Unlambda | [20260828-Unlambda](20260828-Unlambda) |
 | 2026-08-31 | MUMPS | [20260831-MUMPS](20260831-MUMPS) |
 | 2026-09-01 | SETL | [20260901-SETL](20260901-SETL) |
