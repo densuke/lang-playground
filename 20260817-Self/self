@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+# self FILE.self
+# 保存しておいた Self の世界を読み込み、FILE.self の式を順に評価する。
+# FILE.self の最後に _Quit が無いと、対話環境に入って標準入力を待つ。
+# ここでは標準入力を /dev/null にしているので、その場合もすぐに終わる。
+set -euo pipefail
+[ $# -eq 1 ] || { echo "usage: self FILE.self" >&2; exit 2; }
+[ -r "$1" ] || { echo "self: $1 が読めません" >&2; exit 1; }
+# VM は起動のたびに i386 向けの設定 ("for I386: ...") と "Reading FILE..." を
+# 標準エラーに書く。エラーの表示は残し、この 2 つだけを消す。
+exec 3>&1
+qemu-i386 /opt/self/Self -s /opt/self/world.snap -f "$1" < /dev/null 2>&1 1>&3 3>&- \
+    | sed -e '/^for I386: /d' -e 's/^Reading [^ ]*\.\.\.//' -e '/^$/d' >&2
