@@ -1,0 +1,5 @@
+examine lamp
+take lamp
+south
+inventory
+north

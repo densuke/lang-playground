@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+# i7 STORY.ni COMMANDS.txt
+# Inform 7 のソースを Glulx 形式にコンパイルし、COMMANDS.txt の各行を
+# プレイヤーの入力として流し込んで遊ぶ。入力した行も画面に出す。
+set -euo pipefail
+[ $# -eq 2 ] || { echo "usage: i7 STORY.ni COMMANDS.txt" >&2; exit 2; }
+story=$1 cmds=$2
+[ -r "$story" ] || { echo "i7: $story が読めません" >&2; exit 1; }
+[ -r "$cmds" ] || { echo "i7: $cmds が読めません" >&2; exit 1; }
+
+I=/opt/inform
+work=$(mktemp -d)
+trap 'rm -rf "$work"' EXIT
+mkdir -p "$work/Story.inform/Source" "$work/ext" "$work/tmp"
+cp "$story" "$work/Story.inform/Source/story.ni"
+# uuid.txt が無いプロジェクトはコンパイルを拒まれる (構文エラーではない)。
+echo "00000000-0000-0000-0000-000000000000" > "$work/Story.inform/uuid.txt"
+
+# -fixtime で日付由来の Serial number を固定し、毎回同じ出力にする。
+"$I/inform7" -fixtime -release -no-progress -no-index \
+    -internal "$I/Internal" -external "$work/ext" -transient "$work/tmp" \
+    -format=Inform6/32 -project "$work/Story.inform" | grep -v '^Inform 7 has finished'
+# Inform 6 の出力は所要時間などで毎回変わるので、失敗したときだけ見せる。
+if ! i6log=$("$I/inform6" -E2wG "$work/Story.inform/Build/auto.inf" "$work/story.ulx" 2>&1); then
+    printf '%s\n' "$i6log" >&2
+    exit 1
+fi
+echo "----"
+# glulxe (cheapglk) は入力を画面に出さないので、プロンプト ">" の後ろに
+# 流し込んだ行を差し込んで、打ったように見せる。
+"$I/glulxe" -u -q "$work/story.ulx" < "$cmds" | awk -v cmds="$cmds" '
+    BEGIN { while ((getline l < cmds) > 0) c[n++] = l }
+    /^>/ && i < n { print "> " c[i++]; rest = substr($0, 2); if (rest != "") print rest; next }
+    { print }' | cat -s
