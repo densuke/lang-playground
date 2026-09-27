@@ -1,0 +1,15 @@
+; Draw a square with the turtle.
+; There is no screen in the container, so we print where the turtle is.
+window                ; let the turtle go anywhere (no wrap-around)
+
+print [repeat 4 [forward 100 right 90]]
+repeat 4 [forward 100 right 90]
+print se [back at:] pos
+
+to square :size
+  repeat 4 [forward :size right 90]
+end
+
+square 50
+print se [square 50 -> back at:] pos
+bye

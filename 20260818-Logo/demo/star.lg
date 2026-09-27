@@ -1,0 +1,11 @@
+; Walk a five-pointed star and print every corner.
+; Think "if I were the turtle": go 100 steps, turn 144 degrees, repeat.
+window
+
+to star :size
+  repeat 5 [forward :size right 144 print (list round xcor round ycor)]
+end
+
+print [corners of the star:]
+star 100
+bye
