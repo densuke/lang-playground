@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+# eiffel MAIN.e [OTHER.e ...]
+# 最初のファイルのクラスを入口 (make) にして EiffelStudio の ec でコンパイルし、実行する。
+# 契約 (require / ensure / invariant) はすべて実行時に検査する設定にする。
+set -euo pipefail
+[ $# -ge 1 ] || { echo "usage: eiffel MAIN.e [OTHER.e ...]" >&2; exit 2; }
+for f in "$@"; do
+    [ -r "$f" ] || { echo "eiffel: $f が読めません" >&2; exit 1; }
+done
+root=$(basename "$1" .e | tr '[:lower:]' '[:upper:]')
+
+# ec はカレントディレクトリに EIFGENs/ を作るので、作業は一時ディレクトリで行う。
+work=$(mktemp -d)
+trap 'rm -rf "$work"' EXIT
+cp "$@" "$work/"
+cat > "$work/app.ecf" <<ECF
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<system xmlns="http://www.eiffel.com/developers/xml/configuration-1-23-0" name="app">
+	<target name="app">
+		<root class="$root" feature="make"/>
+		<option>
+			<assertions precondition="true" postcondition="true" check="true" invariant="true" loop="true"/>
+		</option>
+		<capability>
+			<concurrency support="none"/>
+		</capability>
+		<precompile name="base_pre" location="\$ISE_PRECOMP/base-safe.ecf"/>
+		<library name="base" location="\$ISE_LIBRARY/library/base/base.ecf"/>
+		<cluster name="app" location="."/>
+	</target>
+</system>
+ECF
+cd "$work"
+# コンパイラの出力は、失敗したときだけ見せる。
+if ! log=$(ec -batch -config app.ecf -c_compile 2>&1); then
+    printf '%s\n' "$log" >&2
+    exit 1
+fi
+./EIFGENs/app/W_code/app
