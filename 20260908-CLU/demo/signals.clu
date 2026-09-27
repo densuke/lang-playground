@@ -1,0 +1,28 @@
+% Exceptions: a procedure lists the signals it may raise, the caller handles them with except.
+
+average = proc (a: array[int]) returns (int) signals (empty)
+    if array[int]$empty(a) then signal empty end
+    sum: int := 0
+    for x: int in array[int]$elements(a) do
+        sum := sum + x
+    end
+    return(sum / array[int]$size(a))
+end average
+
+report = proc (po: stream, a: array[int])
+    stream$putl(po, "average = " || int$unparse(average(a)))
+       except when empty:
+                  stream$putl(po, "empty array: signal caught")
+              end
+end report
+
+start_up = proc ()
+    po: stream := stream$primary_output()
+    report(po, array[int]$[3, 5, 10])
+    report(po, array[int]$[])
+    n: int := int$parse("12x")
+       except when bad_format:
+                  stream$putl(po, "int$parse: bad_format")
+                  n := 0
+              end
+end start_up

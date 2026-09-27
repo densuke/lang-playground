@@ -1,0 +1,32 @@
+% An iterator yields values one by one to the for loop that called it.
+
+evens = iter (lo, hi: int) yields (int)
+    i: int := lo
+    while i <= hi do
+        if i // 2 = 0 then yield(i) end
+        i := i + 1
+    end
+end evens
+
+fib = iter (n: int) yields (int)
+    a: int := 0
+    b: int := 1
+    for k: int in int$from_to(1, n) do
+        yield(a)
+        a, b := b, a + b
+    end
+end fib
+
+start_up = proc ()
+    po: stream := stream$primary_output()
+    stream$puts(po, "evens:")
+    for e: int in evens(1, 10) do
+        stream$puts(po, " " || int$unparse(e))
+    end
+    stream$putl(po, "")
+    stream$puts(po, "fib:")
+    for f: int in fib(10) do
+        stream$puts(po, " " || int$unparse(f))
+    end
+    stream$putl(po, "")
+end start_up
