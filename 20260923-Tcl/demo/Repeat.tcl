@@ -1,7 +1,7 @@
 # if も for も、実は特別扱いされていないただのコマンド。
 # 同じ土俵で「新しい制御構造」を自作できる。
 #
-# body を素朴に [uplevel] すると、body の中で作った変数は proc の中に閉じ込
+# body を素朴に [eval] すると、body の中で作った変数は proc の中に閉じ込
 # められる。呼び出し元のスコープで実行したいので uplevel 1 を使う。
 proc repeat {n body} {
     for {set i 0} {$i < $n} {incr i} { uplevel 1 $body }
