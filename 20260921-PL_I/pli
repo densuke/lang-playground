@@ -1,0 +1,18 @@
+#!/bin/sh
+# pli FILE.pli: コンパイルしてリンクし、実行する。
+# 作業ファイル (.o / .lst / 実行ファイル) は一時ディレクトリに作り、demo/ には残さない。
+set -eu
+[ $# -eq 1 ] || { echo "usage: pli FILE.pli" >&2; exit 2; }
+src="$(cd "$(dirname "$1")" && pwd)/$(basename "$1")"
+name="$(basename "$1" .pli)"
+tmp="$(mktemp -d)"
+trap 'rm -rf "$tmp"' EXIT
+cd "$tmp"
+# -ew: 警告だけなら終了コード 0 にする。メッセージは .lst に書かれるので、失敗したときだけ見せる。
+if ! qemu-i386 /opt/pli/plic -C -ew "$src" -o "$name.o" > plic.log 2>&1; then
+    cat plic.log >&2
+    grep -v '^$' "$name.lst" >&2 2>/dev/null || true
+    exit 1
+fi
+i686-linux-gnu-ld -z muldefs -Bstatic -e main -o "$name" "$name.o" -L/opt/pli/lib -lprf
+qemu-i386 "./$name" < /dev/null
