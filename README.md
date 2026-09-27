@@ -37,6 +37,7 @@ cd lang-playground/20260924-Oberon
 
 ## 収録している言語
 
+<!-- langs:start (scripts/update_readme.py が生成) -->
 | 公開日 | 言語 | ディレクトリ |
 |---|---|---|
 | 2026-07-14 | Prolog | [20260714-Prolog](20260714-Prolog) |
@@ -56,6 +57,7 @@ cd lang-playground/20260924-Oberon
 | 2026-10-07 | BASIC | [20261007-BASIC](20261007-BASIC) |
 | 2026-10-08 | Lustre | [20261008-Lustre](20261008-Lustre) |
 | 2026-10-09 | ArnoldC | [20261009-ArnoldC](20261009-ArnoldC) |
+<!-- langs:end -->
 
 ## ディレクトリの中身
 
