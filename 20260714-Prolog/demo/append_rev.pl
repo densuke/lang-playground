@@ -1,6 +1,6 @@
 % append/3 の双方向性。「連結する」だけでなく「分割する」「補う」にも使える。
 
-:- initialization(main).
+:- initialization(main, main).
 
 main :-
     % 普通の使い方: 連結した結果を求める

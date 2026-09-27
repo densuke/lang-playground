@@ -7,7 +7,7 @@ digit(5). digit(6). digit(7). digit(8). digit(9).
 % X + Y = 10 かつ X < Y を満たす組をすべて求める
 pair(X, Y) :- digit(X), digit(Y), X < Y, X + Y =:= 10.
 
-:- initialization(main).
+:- initialization(main, main).
 
 main :-
     findall(X-Y, pair(X, Y), Pairs),

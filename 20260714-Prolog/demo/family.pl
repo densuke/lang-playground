@@ -9,7 +9,7 @@ parent(suzuki, ito).
 grandparent(X, Z) :- parent(X, Y), parent(Y, Z).
 sibling(X, Y) :- parent(P, X), parent(P, Y), X \== Y.
 
-:- initialization(main).
+:- initialization(main, main).
 
 main :-
     findall(G, grandparent(tanaka, G), Gs),
