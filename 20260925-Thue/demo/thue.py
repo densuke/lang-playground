@@ -5,7 +5,7 @@
 規則は `<lhs>::=<rhs>` の形式。`rhs` が `~` で始まれば出力、`:::` そのもの
 なら標準入力から1行読む。規則の適用順は非決定的なので `random.choice` で選ぶ。
 
-ponytail: 同じ規則が複数箇所にマッチしていても最初に見つかった出現位置しか
+Note: 同じ規則が複数箇所にマッチしていても最初に見つかった出現位置しか
 候補にしていない (全出現位置を数える完全な実装ではない)。デモの規模では
 この簡略化で十分。
 """
@@ -28,7 +28,7 @@ def run(src: str, rng: random.Random, out) -> str:
                 rules.append((lhs, rhs))
         else:
             state.append(line)
-    s = "\n".join(state).strip("\n")
+    s = "\n".join(state)
 
     for _ in range(MAX_STEPS):
         usable = [(lhs, rhs) for lhs, rhs in rules if lhs in s]
@@ -42,7 +42,7 @@ def run(src: str, rng: random.Random, out) -> str:
             s = before + after
         elif rhs == ":::":
             line = sys.stdin.readline()
-            s = before + line.rstrip("\n") + after
+            s = before + line.rstrip("\r\n") + after
         else:
             s = before + rhs + after
     raise RuntimeError(f"{MAX_STEPS} ステップを超えました (無限ループの可能性)")
