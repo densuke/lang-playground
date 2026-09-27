@@ -4,6 +4,9 @@
 使い方:
     python3 scripts/update_readme.py          # README.md を書き換える
     python3 scripts/update_readme.py --check  # 一覧が古ければ終了コード 1
+
+.githooks/pre-commit から --check が呼ばれる。clone ごとに一度だけ有効化する:
+    git config core.hooksPath .githooks
 """
 import re
 import sys
