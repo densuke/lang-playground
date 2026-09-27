@@ -1,0 +1,18 @@
+#!/bin/sh
+# clu FILE.clu: pclu で C に変換してコンパイルし、plink でリンクして実行する。
+# 作業ファイル (.c / .o / 実行ファイル) は一時ディレクトリに作り、demo/ には残さない。
+set -eu
+[ $# -eq 1 ] || { echo "usage: clu FILE.clu" >&2; exit 2; }
+src="$(cd "$(dirname "$1")" && pwd)/$(basename "$1")"
+name="$(basename "$1" .clu)"
+tmp="$(mktemp -d)"
+trap 'rm -rf "$tmp"' EXIT
+cd "$tmp"
+cp "$src" .
+# pclu は経過 (Optimizing ... / time = ...) を毎回出すので、失敗したときだけ見せる。
+if ! "$CLUHOME/exe/pclu" -ext false -opt -compile "$name.clu" > pclu.log 2>&1; then
+    cat pclu.log >&2
+    exit 1
+fi
+"$CLUHOME/exe/plink" -opt -o "$name" "$name.o"
+"./$name" < /dev/null

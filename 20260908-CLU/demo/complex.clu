@@ -1,0 +1,31 @@
+% A cluster: the representation (rep) is hidden, only the listed operations are visible.
+
+complex_number = cluster is create, add, subtract, unparse
+    rep = record[real_part: real, imag_part: real]
+
+    create = proc (re, im: real) returns (cvt)
+        return(rep${real_part: re, imag_part: im})
+    end create
+
+    add = proc (a, b: cvt) returns (cvt)
+        return(rep${real_part: a.real_part + b.real_part,
+                    imag_part: a.imag_part + b.imag_part})
+    end add
+
+    subtract = proc (a, b: cvt) returns (cvt)
+        return(rep${real_part: a.real_part - b.real_part,
+                    imag_part: a.imag_part - b.imag_part})
+    end subtract
+
+    unparse = proc (c: cvt) returns (string)
+        return(f_form(c.real_part, 1, 1) || " + " || f_form(c.imag_part, 1, 1) || "i")
+    end unparse
+end complex_number
+
+start_up = proc ()
+    po: stream := stream$primary_output()
+    x: complex_number := complex_number$create(1.5, 2.0)
+    y: complex_number := complex_number$create(0.5, 1.0)
+    stream$putl(po, "x + y = " || complex_number$unparse(complex_number$add(x, y)))
+    stream$putl(po, "x - y = " || complex_number$unparse(complex_number$subtract(x, y)))
+end start_up

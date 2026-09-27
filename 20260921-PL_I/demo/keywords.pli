@@ -1,0 +1,11 @@
+/* PL/I has no reserved words: IF, THEN and ELSE can be variable names. */
+KEYWORDS: PROCEDURE OPTIONS(MAIN);
+   DECLARE (IF, THEN, ELSE) FIXED BINARY(31);
+   IF = 1;
+   THEN = 1;
+   ELSE = 0;
+   IF IF = THEN THEN ELSE = IF;
+   PUT SKIP EDIT('IF = ', IF, ', THEN = ', THEN, ', ELSE = ', ELSE)
+                (A, F(1), A, F(1), A, F(1));
+   PUT SKIP;
+END KEYWORDS;

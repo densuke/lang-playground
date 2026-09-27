@@ -51,10 +51,13 @@ cd lang-playground/20260924-Oberon
 | 2026-09-02 | PostScript | [20260902-PostScript](20260902-PostScript) |
 | 2026-09-03 | Miranda | [20260903-Miranda](20260903-Miranda) |
 | 2026-09-04 | 文言 | [20260904-Wenyan](20260904-Wenyan) |
+| 2026-09-07 | B | [20260907-B](20260907-B) |
+| 2026-09-08 | CLU | [20260908-CLU](20260908-CLU) |
 | 2026-09-10 | REXX | [20260910-REXX](20260910-REXX) |
 | 2026-09-11 | Malbolge | [20260911-Malbolge](20260911-Malbolge) |
 | 2026-09-15 | Haskell | [20260915-Haskell](20260915-Haskell) |
 | 2026-09-18 | Subleq | [20260918-Subleq](20260918-Subleq) |
+| 2026-09-21 | PL/I | [20260921-PL_I](20260921-PL_I) |
 | 2026-09-22 | COBOL | [20260922-COBOL](20260922-COBOL) |
 | 2026-09-22 | Standard ML | [20260922-Standard_ML](20260922-Standard_ML) |
 | 2026-09-23 | Tcl | [20260923-Tcl](20260923-Tcl) |

@@ -1,0 +1,19 @@
+/* ON units: the error handler is written apart from the normal flow. */
+ONUNIT: PROCEDURE OPTIONS(MAIN);
+   DECLARE PRICE FIXED DECIMAL(7,2) INITIAL(1234.5);  /* 7 digits, 2 after the point */
+   DECLARE ITEMS FIXED BINARY(31)   INITIAL(12);
+   DECLARE BOXES FIXED BINARY(31)   INITIAL(0);
+   DECLARE PER   FIXED BINARY(31);
+
+   ON ZERODIVIDE BEGIN;
+      PUT SKIP EDIT('ZERODIVIDE: no boxes (ONCODE ', ONCODE(), ')') (A, F(3), A);
+      GOTO DONE;
+   END;
+
+   PUT SKIP EDIT('price = ', PRICE) (A, F(8,2));
+   PER = ITEMS / BOXES;
+   PUT SKIP EDIT('items per box = ', PER) (A, F(3));
+DONE:
+   PUT SKIP EDIT('back in the main flow') (A);
+   PUT SKIP;
+END ONUNIT;
