@@ -1,0 +1,14 @@
+-- 集合の演算と、写像 (ペアの集合) の反転
+a := {1, 2, 3, 4};
+b := {3, 4, 5};
+print("a + b  =", a + b);     -- 和集合
+print("a * b  =", a * b);     -- 積集合
+print("a - b  =", a - b);     -- 差集合
+print("pow {1,2,3} =", pow {1, 2, 3});   -- べき集合
+
+m := {["one", 1], ["two", 2], ["three", 3]};
+print("m(\"two\") =", m("two"));
+print("inverse  =", {[y, x] : [x, y] in m});
+
+print("exists x in a | x > 3 :", exists x in a | x > 3);
+print("forall x in a | x > 5 :", forall x in a | x > 5);

@@ -46,7 +46,11 @@ cd lang-playground/20260924-Oberon
 | 2026-08-21 | Fractran | [20260821-Fractran](20260821-Fractran) |
 | 2026-08-24 | Ada | [20260824-Ada](20260824-Ada) |
 | 2026-08-28 | Unlambda | [20260828-Unlambda](20260828-Unlambda) |
+| 2026-08-31 | MUMPS | [20260831-MUMPS](20260831-MUMPS) |
+| 2026-09-01 | SETL | [20260901-SETL](20260901-SETL) |
 | 2026-09-02 | PostScript | [20260902-PostScript](20260902-PostScript) |
+| 2026-09-03 | Miranda | [20260903-Miranda](20260903-Miranda) |
+| 2026-09-04 | 文言 | [20260904-Wenyan](20260904-Wenyan) |
 | 2026-09-10 | REXX | [20260910-REXX](20260910-REXX) |
 | 2026-09-11 | Malbolge | [20260911-Malbolge](20260911-Malbolge) |
 | 2026-09-15 | Haskell | [20260915-Haskell](20260915-Haskell) |
