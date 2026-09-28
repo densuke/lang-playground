@@ -1,0 +1,13 @@
+-- The video's PAR, fixed: the two processes share a channel, not a variable.
+PROC channel (CHAN BYTE keyboard?, screen!, error!)
+  VAL []BYTE word IS "occam*n":
+  CHAN BYTE c:
+  PAR
+    SEQ i = 0 FOR SIZE word     -- sender
+      c ! word[i]
+    SEQ i = 0 FOR SIZE word     -- receiver
+      BYTE ch:
+      SEQ
+        c ? ch
+        screen ! ch
+:

@@ -1,0 +1,16 @@
+-- SEQ: the lines under it run in order, top to bottom.
+#INCLUDE "course.module"
+
+PROC seq (CHAN BYTE keyboard?, screen!, error!)
+  INT x, y:
+  SEQ
+    x := 3
+    SEQ
+      x := x + 1
+      y := x * x
+    out.string ("x = ", 0, screen!)
+    out.int (x, 0, screen!)
+    out.string (", y = ", 0, screen!)
+    out.int (y, 0, screen!)
+    out.string ("*n", 0, screen!)
+:

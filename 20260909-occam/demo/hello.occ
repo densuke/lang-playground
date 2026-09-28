@@ -1,0 +1,6 @@
+-- Hello, world. out.string comes from the "course" library.
+#INCLUDE "course.module"
+
+PROC hello (CHAN BYTE keyboard?, screen!, error!)
+  out.string ("Hello, occam!*n", 0, screen!)
+:

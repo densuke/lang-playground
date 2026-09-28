@@ -1,0 +1,34 @@
+#!/bin/sh
+# occam FILE.occ: コンパイルしてリンクし、Transterpreter (tvm) で実行する。
+#   occ21 (コンパイラ, i386)      -> qemu-i386 で動かす
+#   plinker.pl (リンカ, Perl)      -> arm64 の perl でそのまま動かす
+#   tvm (仮想マシン, i386)         -> qemu-i386 で動かす
+# 作業ファイル (.tce / .tbc) は一時ディレクトリに作り、demo/ には残さない。
+set -eu
+[ $# -eq 1 ] || { echo "usage: occam FILE.occ" >&2; exit 2; }
+[ -r "$1" ] || { echo "occam: $1 が読めません" >&2; exit 1; }
+name="$(basename "$1" .occ)"
+kroc=/opt/kroc
+lib="$kroc/share/tvm/vtlib"
+tmp="$(mktemp -d)"
+trap 'rm -rf "$tmp"' EXIT
+cp "$1" "$tmp/$name.occ"
+cd "$tmp"
+# #INCLUDE / #USE で読むファイルの探し先。
+ISEARCH="$lib:$kroc/share/tvm/vtinclude"
+export ISEARCH
+# オプションは KRoC の occbuild が tvm 向けに付けるものと同じ。
+# -nwca -nwgy -nwp -nwu は kroc -nw と同じ「警告を出さない」指定 (エラーは出る)。
+if ! qemu-i386 "$kroc/bin/occ21" -t8 -zqa -etc -w -y -znd -znec -udo -zncc -init -xin \
+        -mobiles -zrpe -zcxdiv -zcxrem -zep -DEF OCCBUILD.TVM \
+        -nwca -nwgy -nwp -nwu "$name.occ" > occ21.log 2>&1; then
+    cat occ21.log >&2
+    exit 1
+fi
+# 標準ライブラリ forall と、ソースが使うライブラリ (.USELIB) をリンクする。
+set -- "$lib/forall.lib"
+for l in $(perl "$kroc/bin/tce-dump.pl" -C "$name.tce" | awk '/^\.USELIB/ { print $2 }' | sort -u); do
+    [ "$l" = forall ] || set -- "$@" "$lib/$l.lib"
+done
+perl "$kroc/bin/plinker.pl" -o "$name.tbc" "$@" "$name.tce"
+qemu-i386 "$kroc/bin/tvm" "$name.tbc" < /dev/null

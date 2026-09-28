@@ -1,0 +1,7 @@
+-- The PAR example from the video, as is.
+PROC par.video (CHAN BYTE keyboard?, screen!, error!)
+  BYTE c:
+  PAR
+    keyboard ? c
+    screen ! c
+:
