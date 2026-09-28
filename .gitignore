@@ -1,7 +1,7 @@
-# 各環境の生成物
-*/demo/*.c
-*/demo/*.h
-*/demo/*.sym
+# 各環境の生成物 (demo/ にソースとして .c を置く言語もあるので、ディレクトリを限定する)
+20260924-Oberon/demo/*.c
+20260924-Oberon/demo/*.h
+20260924-Oberon/demo/*.sym
 *.cast
 
 # 制作物 (この repo の対象外)
@@ -10,4 +10,4 @@ proto-*/
 
 # 未整理の検証素材 (整理して各ディレクトリへ移す)
 .salvage/
-*/demo/*.class
+20261009-ArnoldC/demo/*.class
