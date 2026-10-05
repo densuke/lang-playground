@@ -82,6 +82,11 @@ cd lang-playground/20260924-Oberon
 | 2026-10-07 | BASIC | [20261007-BASIC](20261007-BASIC) |
 | 2026-10-08 | Lustre | [20261008-Lustre](20261008-Lustre) |
 | 2026-10-09 | ArnoldC | [20261009-ArnoldC](20261009-ArnoldC) |
+| 2026-10-12 | C++ | [20261012-CPP](20261012-CPP) |
+| 2026-10-13 | Unison | [20261013-Unison](20261013-Unison) |
+| 2026-10-14 | Perl | [20261014-Perl](20261014-Perl) |
+| 2026-10-15 | Elixir | [20261015-Elixir](20261015-Elixir) |
+| 2026-10-16 | Hexagony | [20261016-Hexagony](20261016-Hexagony) |
 <!-- langs:end -->
 
 ## ディレクトリの中身
