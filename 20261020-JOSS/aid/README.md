@@ -21,7 +21,22 @@ https://timereshared.com/tops-10-quick-tour-simh/ (TOPS-10 を simh で動かす
 `container` / `docker` / `podman` のいずれかがあれば動きます (本リポジトリでは Apple container で確認)。
 初回だけ 2 つのファイル (計 約 59 MB) を `images/` に取得して sha256 を検査します。
 
-対話では `login 100,100` / パスワード `demo1` で入り (PiDP-10 のイメージに入っている公開アカウント)、
+対話で使う場合、起動直後のディスクにはまだ AID が入っていません (`.r aid` は `?AID.SAV not found`)。
+まず管理用アカウント `login 1,2` (パスワード `FAILSA`) で入り、BACKUP でテープから取り込みます
+(`bin/aid-run` の手順 1 と同じ)。
+
+```
+.r backup
+/tape mta0:
+/rewind
+/restore dskb:[1,4]=aid.exe
+!                      (bin/aid-run と同じく送る。Done が出るまで待つ)
+/exit
+.protect sys:aid.exe <155>
+.r logout
+```
+
+そのあと `login 100,100` / パスワード `demo1` (PiDP-10 のイメージに入っている公開アカウント) で入り直し、
 `.r aid` で AID が起ち `*` が出ます。AID を抜けるのは Ctrl-C、TOPS-10 から出るのは `.r logout`、
 telnet を閉じるのは Ctrl-] のあと `quit`。
 

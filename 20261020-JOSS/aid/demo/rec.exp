@@ -1,0 +1,30 @@
+# 収録用の共通部品 (rec-run.sh / rec-feature.sh が source する)。
+# 人が端末で打つように、1 文字ずつ遅らせて送る。画面はそのまま見せる (log_user 1)。
+log_user 1
+set timeout 120
+set send_slow {1 0.045}
+
+# 打って、期待の応答 (prompt の正規表現) が来るまで待つ。来なければ止める
+proc typed {line prompt} {
+    send -s -- "$line\r"
+    expect {
+        -re $prompt { return }
+        timeout { puts "\r\n# タイムアウト: '$line' の後に $prompt が来ません"; exit 1 }
+    }
+}
+# 画面に出したくない入力 (パスワード) は、ゆっくりでなく普通に送る
+proc secret {text prompt} {
+    send -- "$text\r"
+    expect -re $prompt
+}
+# TOPS-10 の LOGIN 案内が出るまで改行を送り直す
+proc wait_login {} {
+    set tries 0
+    while {1} {
+        send "\r"
+        expect {
+            "Please LOGIN" { return }
+            timeout { if {[incr tries] > 6} { puts "# LOGIN 案内が出ません"; exit 1 } }
+        }
+    }
+}
