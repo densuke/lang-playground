@@ -1,0 +1,6 @@
+#!/bin/sh
+# 対話用: TOPS-10 を起動して telnet で入る。ログインは 100,100 / demo1 (PiDP-10 同梱の公開アカウント)
+set -eu
+aid-boot
+echo "login 100,100 / demo1 で入る。AID は .r aid。終わりは .r logout"
+exec telnet localhost 10603

@@ -1,0 +1,7 @@
+# hello: Type と Set。式ごと答える
+Type "Hello, world"
+Type 2+2
+Type 22/7
+x = 3
+Type x, x+1, x*x
+Type sqrt(2)

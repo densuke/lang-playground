@@ -1,0 +1,8 @@
+Let f(x) = x*x + 1.
+Type f(3), f(10).
+Let g(n) = [n = 0: 1; n * g(n - 1)].
+Type g(6).
+1.1 Type "n =", n.
+1.2 Type g(n).
+Do part 1 for n = 1(1)5.
+Do step 1.2 for n = 8, 10.

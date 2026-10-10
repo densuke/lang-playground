@@ -1,0 +1,6 @@
+#!/bin/sh
+# 非対話: TOPS-10 を起動して台本 (既定は demo/*.aid) を AID に流す。画面の記録に使う。
+set -eu
+aid-boot >/dev/null
+[ "$#" -gt 0 ] || set -- /work/*.aid
+exec aid-run "$@"

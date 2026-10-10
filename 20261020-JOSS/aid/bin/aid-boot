@@ -1,0 +1,16 @@
+#!/bin/sh
+# ディスクを展開して simh を背景で起動し、ログイン可能になるまで待つ。
+# 前提: /images に tops603ka.zip と bb-x130a-sb.tap.bz2 (run.sh が置く)。
+set -eu
+mkdir -p /disks
+unzip -oq /images/tops603ka.zip -d /disks
+bunzip2 -ck /images/bb-x130a-sb.tap.bz2 > /disks/bb-x130a-sb.tap
+# 標準入力が閉じるとコンソールが落ちるので、開きっぱなしにしておく
+sleep 100000 | pdp10-ka /opt/ini/run.ini > /tmp/console.log 2>&1 &
+i=0
+until grep -q 'system 50' /tmp/console.log 2>/dev/null; do
+    i=$((i + 1))
+    [ "$i" -gt 300 ] && { echo "TOPS-10 が起動しません" >&2; cat /tmp/console.log >&2; exit 1; }
+    sleep 1
+done
+echo "boot: ${i}s"

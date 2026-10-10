@@ -1,0 +1,24 @@
+# diff: RAND JOSS と違うところ
+# 乗算は * 、べき乗は ^ (RAND の JOSS は * がべき乗、乗算は中黒)
+Type 2*3
+Type 2^3
+Type 2**3
+Type 2&3
+Type 100**3
+# 結果は 9 桁に丸め、小さい数と大きい数は科学表記
+Type 1/3
+Type 1/3+1/3+1/3
+Type 365*24*60*60
+Type .0005*.01
+# 変数は 1 文字だけ。未定義は ??? 、わからない命令は Eh?
+Type z
+Type foo
+TYPE 1+1
+type 1+1
+Type 7 mod 3
+Type 1/0
+# 蓄えた行の誤りは、実行するまでわからない
+8.1 Frobnicate
+Type part 8
+Do part 8
+Type "a", 1, "b"
