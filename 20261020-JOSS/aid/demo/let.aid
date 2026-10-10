@@ -1,0 +1,19 @@
+# let: 式の定義と利用者関数、Demand
+a = 5134/73
+b = [42-sqrt(50)]/19
+Type (a^2+b)/a
+Let d = sqrt(a) + b + c
+Type formula d
+Type d
+c = 2
+Type d
+Let f(b,c) = b^2 + 2*b*c + c^2
+Type f(4,10)
+# Demand は値を利用者に尋ねる
+7.1 Demand x
+7.2 Demand y
+7.3 Type x*y
+Do part 7
+>4
+>6
+Type part 7

@@ -1,0 +1,95 @@
+#!/usr/bin/expect -f
+# TOPS-10 を起動済みの前提で、AID をテープから入れ、100,100 でログインして AID に台本を流す。
+# 使い方: aid-run file.aid ...   各ファイルの 1 行を AID へ 1 行ずつ送る (プロンプト * を待ってから次の行)。
+# 台本の行頭が '#' なら見出しとして画面に出すだけ。空行は送らない。
+log_user 0
+if {[info exists env(AID_DEBUG)]} { log_file -a /tmp/aid-run.log }
+set timeout 120
+set host localhost
+set port 10603
+
+# container exec の標準出力は終了までまとめて届くことがあるので、経過を /tmp/aid-run.progress にも逐次書く
+proc say {text} {
+    puts $text; flush stdout
+    set fh [open /tmp/aid-run.progress a]; puts $fh $text; close $fh
+}
+proc clean {text} { return [string map [list "\r" "" "\f" ""] $text] }
+# AID が次の入力を待つ合図は 2 通り。通常のプロンプト * (直前は \r\n や 改ページ \f) と、
+# Demand の入力要求 "x= " (行末が "= ")。来なければ止める
+proc wait_prompt {} {
+    global expect_out
+    expect {
+        -re {[\n\f]\*|[A-Za-z] = \*?$} { return [clean $expect_out(buffer)] }
+        timeout { puts "# タイムアウト: AID が次の入力を待つ状態になりません"; exit 1 }
+    }
+}
+
+# 送って、期待の応答が来るまで待つ。来なければ状況を出して止める (黙って先へ進まない)
+proc cmd {line {prompt {\r\n\.}}} {
+    global expect_out
+    send "$line\r"
+    expect {
+        -re $prompt { return [clean $expect_out(buffer)] }
+        timeout {
+            puts "# タイムアウト: '$line' の後に '$prompt' が来ません。受信: [expr {[info exists expect_out(buffer)] ? [clean $expect_out(buffer)] : {(なし)}}]"
+            exit 1
+        }
+    }
+}
+
+spawn telnet $host $port
+expect "Connected"
+sleep 1
+# 起動直後は OPSER の自動処理で応答が遅れることがあるので、LOGIN 案内が出るまで改行を送り直す
+set tries 0
+while {1} {
+    send "\r"
+    expect {
+        "Please LOGIN" { sleep 2; break }
+        timeout { if {[incr tries] > 6} { puts "# LOGIN 案内が出ません"; exit 1 } }
+    }
+}
+
+# 1. [1,2] で AID.EXE を SYS: ([1,4]) へ BACKUP で復元し、誰でも走らせられるようにする
+cmd "login 1,2" {Password:}
+cmd "FAILSA" {\r\n\.}
+cmd "r backup" {\r\n/}
+cmd "/tape mta0:" {\r\n/}
+cmd "/rewind" {\r\n/}
+cmd "/restore dskb:\[1,4]=aid.exe" {\r\n}
+cmd "!" {Done}
+sleep 1
+cmd "/exit" {\r\n\.}
+cmd "protect sys:aid.exe <155>" {\r\n\.}
+regexp {AID[^\n]*DSKB:[^\n]*} [cmd "dir sys:aid.exe" {DSKB:[^\n]*\n\r?\n}] aidline
+say "# 取り込み確認: $aidline"
+cmd "" {\r\n\.}
+cmd "r logout" {Logged off}
+sleep 2
+
+# 2. 一般利用者でログインして AID を起動
+cmd "login 100,100" {Password:}
+cmd "demo1" {\r\n\.}
+send "r aid\r"
+say [string trim [wait_prompt] "\n"]
+
+# 3. 台本を 1 行ずつ流す。送った行は端末のエコーでそのまま見える
+#    行頭が '#' なら見出し。'>' で始まる行は Demand への答えで、'>' は送らず画面にも '*' を付けない
+foreach file $argv {
+    set fh [open $file]
+    while {[gets $fh line] >= 0} {
+        if {[string match "#*" $line]} { say $line; continue }
+        if {[string trim $line] eq ""} { continue }
+        set answer [string match ">*" $line]
+        if {$answer} { set line [string range $line 1 end] }
+        send "$line\r"
+        set out [wait_prompt]
+        regsub {\*$} $out "" out
+        say "[expr {$answer ? "" : "*"}][string trimright [string trimleft $out "\n"]]"
+    }
+    close $fh
+}
+send "\x03"
+cmd "" {\r\n\.}
+cmd "r logout" {Logged off}
+say "# 終了"
