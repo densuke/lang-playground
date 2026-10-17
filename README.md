@@ -92,6 +92,11 @@ cd lang-playground/20260924-Oberon
 | 2026-10-21 | R | [20261021-R](20261021-R) |
 | 2026-10-22 | Idris 2 | [20261022-Idris](20261022-Idris) |
 | 2026-10-23 | Iota | [20261023-Iota](20261023-Iota) |
+| 2026-10-26 | Mercury | [20261026-Mercury](20261026-Mercury) |
+| 2026-10-27 | Linda | [20261027-Linda](20261027-Linda) |
+| 2026-10-28 | Ruby | [20261028-Ruby](20261028-Ruby) |
+| 2026-10-29 | Egison | [20261029-Egison](20261029-Egison) |
+| 2026-10-30 | Whenever | [20261030-Whenever](20261030-Whenever) |
 <!-- langs:end -->
 
 ## ディレクトリの中身
