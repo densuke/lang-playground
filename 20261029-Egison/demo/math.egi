@@ -1,0 +1,15 @@
+-- 数式処理。パターンマッチの応用として、Egison 自身で書かれた数式処理 (lib/math) を使う。
+-- 触れる程度のデモ。テンソルは公式 README にある球面の曲率の例を参照。
+declare symbol x, y
+
+(x + y)^4
+
+sqrt 6 * sqrt 10
+
+(1 + i) * (1 + i)
+
+d/d (x ^ 3) x
+
+d/d (cos x * sin x) x
+
+take 8 (taylorExpansion (cos x) x 0)

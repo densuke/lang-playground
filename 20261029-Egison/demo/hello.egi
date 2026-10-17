@@ -1,0 +1,2 @@
+-- Hello World。main は引数のリストを受け取って IO () を返す。
+def main (args: [String]) : IO () := print "Hello, world!"

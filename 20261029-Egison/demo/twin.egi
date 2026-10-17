@@ -1,0 +1,13 @@
+-- 無限の素数列から双子素数を取り出す。公式サイトの代表例。
+def twinPrimes : [(Integer, Integer)] :=
+  matchAll primes as list integer with
+    | _ ++ $p :: #(p + 2) :: _ -> (p, p + 2)
+
+take 10 twinPrimes
+
+-- 素数の三つ子 (p, p+2 か p+4, p+6)
+def primeTriplets : [(Integer, Integer, Integer)] :=
+  matchAll primes as list integer with
+    | _ ++ $p :: ($m & (#(p + 2) | #(p + 4))) :: #(p + 6) :: _ -> (p, m, p + 6)
+
+take 5 primeTriplets

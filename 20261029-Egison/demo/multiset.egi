@@ -1,0 +1,9 @@
+-- 多重集合 (multiset) に対するパターンマッチ。
+-- 順序を無視して「同じ値が 2 回出る」(非線形パターン $x :: #x) 要素を探す。
+-- matchAll は一致するすべての組み合わせを列挙する。
+matchAll [1, 2, 3, 4, 3, 5, 2, 6] as multiset integer with
+  | $x :: #x :: _ -> x
+
+-- 連続する 3 つ (x, x+1, x+2) を、並び順に関係なく探す。
+matchAll [1, 2, 13, 14, 3, 15, 2, 6] as multiset integer with
+  | $x :: #(x + 1) :: #(x + 2) :: _ -> x

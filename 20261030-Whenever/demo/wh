@@ -1,0 +1,9 @@
+#!/bin/sh
+# 使い方: wh [シード] プログラム.we   シードを渡すと並び順が毎回同じになる (random.seed)。
+# 処理系は WheneverEverywhere そのまま。ここでは乱数の種を決めて起動するだけ。
+if [ $# -eq 2 ]; then seed=$1; shift; else seed=; fi
+exec python3 -c '
+import random, sys, runpy
+if sys.argv[1]: random.seed(int(sys.argv[1]))
+sys.argv[1:2] = []
+runpy.run_module("WheneverEverywhere", run_name="__main__")' "$seed" run "$1" 2>/dev/null
