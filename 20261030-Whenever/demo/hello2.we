@@ -1,0 +1,2 @@
+1 print("Hello,");
+2 defer(1) print("world!");
