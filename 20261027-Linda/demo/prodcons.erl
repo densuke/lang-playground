@@ -18,8 +18,8 @@ run() ->
         Parent ! consumer_done
     end}),
 
-    timer:sleep(1500),
-    Log("生産者: 1.5 秒待った。out({item, 42})", []),
+    timer:sleep(4000),
+    Log("生産者: 4 秒待った。out({item, 42})", []),
     espace:out({item, 42}),
 
     receive consumer_done -> ok after 5000 -> io:format("タイムアウト~n") end,
