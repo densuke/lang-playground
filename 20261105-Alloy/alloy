@@ -1,0 +1,2 @@
+#!/bin/sh
+exec java -Djava.awt.headless=true -jar /opt/alloy.jar "$@"

@@ -97,6 +97,11 @@ cd lang-playground/20260924-Oberon
 | 2026-10-28 | Ruby | [20261028-Ruby](20261028-Ruby) |
 | 2026-10-29 | Egison | [20261029-Egison](20261029-Egison) |
 | 2026-10-30 | Whenever | [20261030-Whenever](20261030-Whenever) |
+| 2026-11-02 | JavaScript | [20261102-JavaScript](20261102-JavaScript) |
+| 2026-11-03 | ALGOL | [20261103-ALGOL](20261103-ALGOL) |
+| 2026-11-04 | PowerShell | [20261104-PowerShell](20261104-PowerShell) |
+| 2026-11-05 | Alloy | [20261105-Alloy](20261105-Alloy) |
+| 2026-11-06 | Binary Lambda Calculus | [20261106-BLC](20261106-BLC) |
 <!-- langs:end -->
 
 ## ディレクトリの中身
