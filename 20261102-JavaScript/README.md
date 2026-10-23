@@ -8,7 +8,7 @@
 ./run.sh bash -s < demo.sh        # 全部を順に実行する
 ```
 
-処理系は公式 node イメージの Node.js 24.22.1 (`node:24.22.1-trixie-slim`、digest 固定)。
+処理系は公式 node イメージの Node.js 26.12.1 (`node:26.12.1-trixie-slim`、digest 固定)。
 2026-10-24 時点で nodejs.org のダウンロードページが LTS として案内している版です。
 npm の依存は使わず、Node.js 標準だけで動きます。初回のイメージ取得は数分、2 回目以降のビルドは数秒です。
 
