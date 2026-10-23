@@ -16,6 +16,7 @@ npm の依存は使わず、Node.js 標準だけで動きます。初回のイ�
 |---|---|
 | `demo/hello.mjs` | 第一級関数とクロージャ (カウンタ、`compose`、`var` と `let`) |
 | `demo/proto.mjs` | プロトタイプ連鎖、`class` は prototype の上の書き方 |
+| `demo/order.mjs` | 実行順の最小例 (同期、Promise、`setTimeout`。A B C D の順) |
 | `demo/eventloop.mjs` | イベントループの実行順 (同期、マイクロタスク、`setTimeout`) |
 | `demo/coercion.mjs` | 型変換の癖 (`typeof null`、`==`、`sort`、`parseInt`、BigInt) |
 

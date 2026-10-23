@@ -4,3 +4,4 @@ node /work/hello.mjs
 node /work/proto.mjs
 node /work/eventloop.mjs
 node /work/coercion.mjs
+node /work/order.mjs
