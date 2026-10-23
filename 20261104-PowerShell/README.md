@@ -18,3 +18,5 @@ linux-arm64 tarball を入れています (SHA256 を Dockerfile で検証)。�
 | `demo/objects.ps1` | 流れているのは文字列ではなくオブジェクト (`Get-Member`) |
 | `demo/pipeline.ps1` | `Where-Object` `Sort-Object` `Select-Object` `Group-Object` で絞る・並べる |
 | `demo/data.ps1` | JSON をオブジェクトにして、別の形 (CSV) へ |
+| `demo/pipe.ps1` | 動画で見せた短いパイプ (`Where-Object` `Sort-Object` `Select-Object`) |
+| `demo/types.ps1` | ファイルの大きさ (`Int64`) と外部コマンドの出力 (`String`) の型 |
