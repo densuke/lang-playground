@@ -1,0 +1,8 @@
+{
+  "name": "lang-typescript-playground",
+  "private": true,
+  "description": "TypeScript 実験環境 (2026-11-09 言語紹介枠)",
+  "devDependencies": {
+    "typescript": "7.0.2"
+  }
+}

@@ -11,3 +11,10 @@ proto-*/
 # 未整理の検証素材 (整理して各ディレクトリへ移す)
 .salvage/
 20261009-ArnoldC/demo/*.class
+20261112-Coq/demo/*.vo
+20261112-Coq/demo/*.vok
+20261112-Coq/demo/*.vos
+20261112-Coq/demo/*.glob
+20261112-Coq/demo/.*.aux
+20261112-Coq/demo/isort.ml*
+__pycache__/
