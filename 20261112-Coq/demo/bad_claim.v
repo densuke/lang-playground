@@ -1,4 +1,4 @@
-(* 偽の主張は証明できない。Qed が受理されないので、この .v はコンパイルが失敗する。 *)
+(* 偽の主張は証明できない。Qed が通らず失敗する。 *)
 From Stdlib Require Import Arith.
 
 Theorem add_one_same : forall n : nat, n + 1 = n.

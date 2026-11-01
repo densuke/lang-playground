@@ -16,7 +16,10 @@ Microsoft の公式イメージではなく、`debian:trixie-slim` (digest 固�
 
 | ファイル | 内容 |
 |---|---|
-| `demo/hello.cs` | Hello World・トップレベル文・`var` の型推論 |
+| `demo/hello.cs` | Hello World・トップレベル文・`var` の型推論・実行環境の版 |
+| `demo/query.cs` | LINQ の最小例 (動画の端末収録で使用)。`record` と `Count` 付き |
 | `demo/linq.cs` | LINQ (クエリ式とメソッド形式、GroupBy) |
 | `demo/records.cs` | `record`・`switch` 式のパターンマッチ・`with` |
 | `demo/async.cs` | `async` / `await` と `Task.WhenAll` (順番に 約 600 ms、同時に 約 300 ms) |
+
+収録用に `rec-run.sh` / `rec-feature.sh` / `align-cast.py` を置いています (動画の端末収録の再現用)。

@@ -105,8 +105,8 @@ cd lang-playground/20260924-Oberon
 | 2026-11-09 | TypeScript | [20261109-TypeScript](20261109-TypeScript) |
 | 2026-11-10 | Erlang | [20261110-Erlang](20261110-Erlang) |
 | 2026-11-11 | C# | [20261111-CSharp](20261111-CSharp) |
-| 2026-11-12 | Coq (Rocq) | [20261112-Coq](20261112-Coq) |
-| 2026-11-13 | Cyclic Tag System | [20261113-Cyclic_Tag](20261113-Cyclic_Tag) |
+| 2026-11-12 | Rocq (Coq) | [20261112-Coq](20261112-Coq) |
+| 2026-11-13 | Bitwise Cyclic Tag (BCT) | [20261113-Cyclic_Tag](20261113-Cyclic_Tag) |
 <!-- langs:end -->
 
 ## ディレクトリの中身

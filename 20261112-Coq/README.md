@@ -1,13 +1,13 @@
-# Coq (Rocq) を試す (2026-11-12)
+# Rocq (Coq) を試す (2026-11-12)
 
 「古今東西 プログラミング言語紹介」2026-11-12 回の実験環境です。
-Coq は 2025 年に **Rocq (The Rocq Prover)** へ改名されました。コマンドも `coqc` / `coqtop` から `rocq compile` / `rocq repl` に変わっています。
+Rocq (旧名 Coq、The Rocq Prover) は 2025 年に改名されました。コマンドも `coqc` / `coqtop` から `rocq compile` / `rocq repl` に変わっています。
 
 ```bash
 ./run.sh                                  # シェル (bash) に入る
-./run.sh rocq compile /work/hello.v       # 証明をコンパイル (通れば何も出ない)
+./run.sh rocq compile /work/hello.v       # 証明をコンパイル (定理の型と、公理に頼らない旨が出る)
 ./run.sh rocq repl                        # 対話環境 (REPL)
-./run.sh bash /work/demo.sh               # 全部を順に実行する
+./run.sh bash -s < demo.sh                # 全部を順に実行する
 ```
 
 `container` (Apple container) / `docker` / `podman` のいずれかがあれば動きます。

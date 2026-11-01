@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Coq の実験環境に入る。container / docker / podman のどれかがあれば動く。
+# Rocq (Coq) の実験環境に入る。container / docker / podman のどれかがあれば動く。
 set -euo pipefail
 here="$(cd "$(dirname "$0")" && pwd)"
 rt="$(command -v container || command -v docker || command -v podman)" || {
