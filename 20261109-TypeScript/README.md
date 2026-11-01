@@ -21,6 +21,7 @@ TypeScript 7 は、カレントに `tsconfig.json` があるとファイルを�
 | `demo/errors.ts` | 型エラーをコンパイル時に捕まえる (引数の型・数、タイプミス、別の型の代入) |
 | `demo/infer.ts` | 型推論 (`.d.ts` に推論結果を書き出して見る。`typeof` による型の絞り込み) |
 | `demo/structural.ts` | 構造的部分型 (形が合えば渡せる、足りなければ通らない) |
+| `demo/shape.ts` | 構造的部分型の短い版 (動画の収録用。8 行) |
 | `demo/erase.ts` | 型だけ消えて JavaScript になる (`tsc` の出力と、Node.js が `.ts` を直接実行する場合) |
 | `demo.sh` | 上の 4 つを順に実行する |
 

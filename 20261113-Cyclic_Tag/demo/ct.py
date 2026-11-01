@@ -100,7 +100,7 @@ def main(argv):
             last = (n, c, d)
             if "--quiet" not in flags and n % every == 0:
                 print(f"step {n:3d}  cmd={c or '-':<3} D={d or '(empty)'}")
-        print("halt: データ語が空になった" if not last[2] else f"(-n {opts['-n']} で打ち切り: 長さ {len(last[2])})")
+        print(f"halt: データ語が空になった ({last[0]} ステップ)" if not last[2] else f"(-n {opts['-n']} で打ち切り: 長さ {len(last[2])})")
     else:
         sys.exit(__doc__)
 

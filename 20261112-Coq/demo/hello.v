@@ -1,4 +1,4 @@
-(* 定理を書いて、tactic で証明する。n + 0 = n は定義から自明ではない (+ は左の引数で再帰する)。 *)
+(* 定理を書いて、tactic で証明する。 *)
 From Stdlib Require Import Arith.
 
 Theorem add_zero_right : forall n : nat, n + 0 = n.

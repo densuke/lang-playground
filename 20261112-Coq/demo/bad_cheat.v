@@ -1,4 +1,4 @@
-(* 証明を途中で投げて Qed と書いても、残りのゴールがあれば通らない。 *)
+(* 途中で投げて Qed と書いても、残りがあれば通らない。 *)
 Theorem and_swap : forall P Q : Prop, P /\ Q -> Q /\ P.
 Proof.
   intros P Q H.
