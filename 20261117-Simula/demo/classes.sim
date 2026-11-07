@@ -1,0 +1,46 @@
+! クラスと継承と仮想手続き (Simula 67);
+BEGIN
+    CLASS Shape(title); TEXT title;
+    VIRTUAL: PROCEDURE area IS REAL PROCEDURE area;; ! 末尾の2つ目のセミコロンが仕様上必要;
+    BEGIN
+        PROCEDURE show;
+        BEGIN
+            OutText(title); OutText(": area = ");
+            OutFix(area, 2, 8); OutImage;
+        END;
+    END;
+
+    Shape CLASS Circle(r); REAL r;
+    BEGIN
+        REAL PROCEDURE area; area := 3.14159265 * r * r;
+    END;
+
+    Shape CLASS Rect(w, h); REAL w, h;
+    BEGIN
+        REAL PROCEDURE area; area := w * h;
+    END;
+
+    ! Rect のさらに下位クラス。パラメータは接頭クラスの分 (title w h) を引き継ぐ;
+    Rect CLASS Square;
+    BEGIN
+        OutText("  (a Square is built)"); OutImage;
+    END;
+
+    REF(Shape) s;
+    REF(Shape) ARRAY shapes(1:3);
+    INTEGER i;
+
+    shapes(1) :- NEW Circle("circle", 1.5);
+    shapes(2) :- NEW Rect("rect", 2.0, 3.0);
+    shapes(3) :- NEW Square("square", 4.0, 4.0);
+    FOR i := 1 STEP 1 UNTIL 3 DO shapes(i).show;
+
+    ! INSPECT / QUA でクラスを判別する;
+    FOR i := 1 STEP 1 UNTIL 3 DO BEGIN
+        s :- shapes(i);
+        IF s IS Circle THEN OutText("  -> Circle")
+        ELSE IF s IS Square THEN OutText("  -> Square (also a Rect)")
+        ELSE IF s IS Rect THEN OutText("  -> Rect");
+        OutImage;
+    END;
+END

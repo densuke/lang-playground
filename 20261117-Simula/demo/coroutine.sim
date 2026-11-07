@@ -1,0 +1,24 @@
+! コルーチン: DETACH と RESUME で 2 つの流れを交互に動かす;
+BEGIN
+    CLASS Counter(tag, inc); TEXT tag; INTEGER inc;
+    BEGIN
+        INTEGER n;
+        DETACH;                      ! 生成直後にいったん呼び出し元へ戻る;
+        WHILE TRUE DO BEGIN
+            n := n + inc;
+            OutText(tag); OutText(" "); OutInt(n, 3); OutImage;
+            DETACH;                  ! ここで止まる。次の RESUME で続きから;
+        END;
+    END;
+
+    REF(Counter) a, b;
+    INTEGER i;
+
+    a :- NEW Counter("A", 1);
+    b :- NEW Counter("B", 10);
+    FOR i := 1 STEP 1 UNTIL 3 DO BEGIN
+        RESUME(a);
+        RESUME(b);
+    END;
+    OutText("done"); OutImage;
+END
