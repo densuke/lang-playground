@@ -1,0 +1,5 @@
+! Hello World。Simula 67 は BEGIN ... END の ALGOL 60 系の構文;
+BEGIN
+    OutText("Hello, Simula!");
+    OutImage;
+END

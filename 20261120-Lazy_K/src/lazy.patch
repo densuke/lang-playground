@@ -1,0 +1,59 @@
+--- lazy.cpp.orig	2026-11-08 06:22:37
++++ lazy.cpp	2026-11-08 06:22:37
+@@ -32,8 +32,6 @@
+ 
+ 
+ #include <stdio.h>
+-#include <io.h>
+-#include <fcntl.h>
+ #include <stdlib.h>
+ #include <ctype.h>
+ 
+@@ -56,7 +54,7 @@
+ public:
+ 	enum Type { A, K, K1, S, S1, S2, I1, LazyRead, Inc, Num, Free } type;
+ 
+-	static void* operator new(unsigned) {
++	static void* operator new(unsigned long) {
+ 		Expr* result = free_list;
+ 		if (result) {
+ 			free_list = result->arg1;
+@@ -554,24 +552,25 @@
+ }
+ 
+ 
++template<class T> T* addr(const T& t) { return const_cast<T*>(&t); }
++
+ int main(int argc, char** argv) {
+ 	Expr* e = I.dup();
+ 	for (int i=1; i<argc; ++i) {
+ 		if (argv[i][0] == '-') {
+ 			switch (argv[i][1]) {
+ 			case 0:
+-				e = append_program(e, &File(stdin, "(standard input)"));
++				e = append_program(e, addr(File(stdin, "(standard input)")));
+ 				break;
+ 			case 'b':
+-				setmode(fileno(stdin), O_BINARY);
+-				setmode(fileno(stdout), O_BINARY);
++				// -b is a no-op on POSIX
+ 				break;
+ 			case 'e':
+ 				++i;
+ 				if (i == argc) {
+ 					usage();
+ 				}
+-				e = append_program(e, &StringStream(argv[i]));
++				e = append_program(e, addr(StringStream(argv[i])));
+ 				break;
+ 			default:
+ 				usage();
+@@ -582,7 +581,7 @@
+ 				fprintf(stderr, "Unable to open the file \"%s\".\n", argv[i]);
+ 				exit(1);
+ 			}
+-			e = append_program(e, &File(f, argv[i]));
++			e = append_program(e, addr(File(f, argv[i])));
+ 		}
+ 	}
+ 	e = Expr::partial_apply(e, new Expr(Expr::LazyRead));

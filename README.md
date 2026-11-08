@@ -107,6 +107,11 @@ cd lang-playground/20260924-Oberon
 | 2026-11-11 | C# | [20261111-CSharp](20261111-CSharp) |
 | 2026-11-12 | Rocq (Coq) | [20261112-Coq](20261112-Coq) |
 | 2026-11-13 | Bitwise Cyclic Tag (BCT) | [20261113-Cyclic_Tag](20261113-Cyclic_Tag) |
+| 2026-11-16 | Rust | [20261116-Rust](20261116-Rust) |
+| 2026-11-17 | Simula | [20261117-Simula](20261117-Simula) |
+| 2026-11-18 | Bash | [20261118-Bash](20261118-Bash) |
+| 2026-11-19 | Forth | [20261119-Forth](20261119-Forth) |
+| 2026-11-20 | Lazy K | [20261120-Lazy_K](20261120-Lazy_K) |
 <!-- langs:end -->
 
 ## ディレクトリの中身

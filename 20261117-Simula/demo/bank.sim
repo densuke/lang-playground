@@ -1,0 +1,45 @@
+! 離散事象シミュレーション: 窓口 1 つの銀行 (SIMULATION クラス);
+SIMULATION BEGIN
+    REF(Head) queue;
+    REF(Customer) cur;
+    BOOLEAN teller_busy;
+    INTEGER served;
+    REAL total_wait;
+
+    PROCESS CLASS Customer;
+    BEGIN
+        REAL arrived;
+        arrived := TIME;
+        OutText("t="); OutFix(TIME, 1, 5); OutText("  customer arrives"); OutImage;
+        IF teller_busy THEN BEGIN
+            Into(queue);
+            Passivate;                     ! 窓口が空くまで待つ;
+        END;
+        teller_busy := TRUE;
+        total_wait := total_wait + (TIME - arrived);
+        Hold(4.0);                         ! 窓口で 4.0 時間かかる;
+        OutText("t="); OutFix(TIME, 1, 5); OutText("  customer leaves"); OutImage;
+        served := served + 1;
+        teller_busy := FALSE;
+        IF NOT queue.Empty THEN BEGIN
+            cur :- queue.First;
+            cur.Out;
+            Activate cur AFTER CURRENT;    ! 次の客を起こす;
+        END;
+    END;
+
+    PROCESS CLASS Generator;
+    BEGIN
+        INTEGER i;
+        FOR i := 1 STEP 1 UNTIL 4 DO BEGIN
+            Activate NEW Customer;
+            Hold(2.5);                     ! 2.5 時間おきに客が来る;
+        END;
+    END;
+
+    queue :- NEW Head;
+    Activate NEW Generator;
+    Hold(30.0);
+    OutText("served="); OutInt(served, 0);
+    OutText("  avg wait="); OutFix(total_wait / served, 2, 6); OutImage;
+END
