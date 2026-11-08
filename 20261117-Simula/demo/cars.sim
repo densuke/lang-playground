@@ -1,0 +1,14 @@
+SIMULATION BEGIN
+    PROCESS CLASS Car(n); INTEGER n;
+    BEGIN
+        OutText("car "); OutInt(n, 1);
+        OutText(" in   t="); OutFix(TIME, 1, 5); OutImage;
+        Hold(4.0);
+        OutText("car "); OutInt(n, 1);
+        OutText(" out  t="); OutFix(TIME, 1, 5); OutImage;
+    END;
+    Activate NEW Car(1);
+    Hold(2.5);
+    Activate NEW Car(2);
+    Hold(10.0);
+END

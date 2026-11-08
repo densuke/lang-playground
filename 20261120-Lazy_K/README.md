@@ -38,6 +38,6 @@ printf 'stressed' | ./run.sh lazy /opt/lazyk/eg/reverse.lazy    # 入力を反�
 | ファイル | 内容 |
 |---|---|
 | `demo.sh` | 下の例を順に実行する (9 項目) |
-| `demo/ski-trace.scm` | SKI の簡約を 1 手ずつ表示 (自作の小さな簡約器、最左最外。遅延評価で `KI(SII(SII))` が止まること、`SII(SII)` が止まらないこと) |
+| `demo/ski-trace.scm` | SKI の簡約を 1 手ずつ表示 (自作の小さな簡約器、最左最外。遅延評価で `KI(SII(SII))` が止まること、`SII(SII)` が止まらないこと)。式を引数で渡すとそれだけ追う: `./run.sh guile --no-auto-compile /work/ski-trace.scm 'KI(SII(SII))'` |
 | `demo/double.scm` | `lazier.scm` でラムダ式を 4 記法 (CC / Unlambda / Iota / Jot) に変換し、入力の各文字を 2 回ずつ出す `dup` を作る |
 | `/opt/lazyk/eg/*` (コンテナ内) | 作者の例題: reverse / rot13 / ab / fib / primes / quine / unlambda (Lazy K で書かれた Unlambda 処理系) |

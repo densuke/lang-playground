@@ -1,0 +1,14 @@
+BEGIN
+    CLASS Shape(t); TEXT t;
+    VIRTUAL: PROCEDURE area IS REAL PROCEDURE area;;
+    BEGIN
+        PROCEDURE show;
+        BEGIN OutText(t); OutFix(area, 2, 8); OutImage; END;
+    END;
+    Shape CLASS Circle(r); REAL r;
+    BEGIN REAL PROCEDURE area; area := 3.14159 * r * r; END;
+    Shape CLASS Rect(w, h); REAL w, h;
+    BEGIN REAL PROCEDURE area; area := w * h; END;
+    NEW Circle("circle: ", 1.5).show;
+    NEW Rect("rect: ", 2.0, 3.0).show;
+END

@@ -1,0 +1,15 @@
+BEGIN
+    CLASS Counter(tag, inc); TEXT tag; INTEGER inc;
+    BEGIN
+        INTEGER n;
+        DETACH;
+        WHILE TRUE DO BEGIN
+            n := n + inc;
+            OutText(tag); OutInt(n, 3); OutImage;
+            DETACH;
+        END;
+    END;
+    REF(Counter) a, b; INTEGER i;
+    a :- NEW Counter("A", 1);  b :- NEW Counter("B", 10);
+    FOR i := 1 STEP 1 UNTIL 3 DO BEGIN RESUME(a); RESUME(b); END;
+END

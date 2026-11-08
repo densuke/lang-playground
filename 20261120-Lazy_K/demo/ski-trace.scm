@@ -1,6 +1,6 @@
 ;; SKI の簡約を 1 手ずつ見せる (最左最外 = 遅延評価の順)。
 ;; 式は ('S 'K 'I か自由変数のシンボル) と (関数 . 引数) の木。
-;; 使い方: guile --no-auto-compile ski-trace.scm
+;; 使い方: guile --no-auto-compile ski-trace.scm [式 ...]  (式を渡すとそれだけ追う)
 ;; 文字列 "SKK(KI)x" -> 木 (左結合、括弧は積んで対応)
 (define (parse* str)
   (let loop ((cs (string->list str)) (st '(none)))
@@ -41,7 +41,11 @@
     (cond ((= n max) (display "  ... (打ち切り: まだ続く)") (newline))
           ((step e) => (lambda (next) (loop next (+ n 1))))
           (else (display "  (正規形)") (newline)))))
-(trace "SKKx" 10)                       ; SKK は恒等関数 I と同じ働き
-(trace "S(KS)Kxyz" 10)                  ; 合成 B: x(yz)
-(trace "KI(SII(SII))" 10)               ; 遅延評価: 発散する式を引数に渡しても捨てるだけなので止まる
-(trace "SII(SII)" 5)                    ; 自分自身を適用し続ける。止まらない
+(define args (cdr (command-line)))      ; 引数があればその式を追う。無ければ下の 4 つ
+(if (pair? args)
+    (for-each (lambda (str) (trace str 6)) args)
+    (begin
+      (trace "SKKx" 10)                 ; SKK は恒等関数 I と同じ働き
+      (trace "S(KS)Kxyz" 10)            ; 合成 B: x(yz)
+      (trace "KI(SII(SII))" 10)         ; 遅延評価: 発散する式を引数に渡しても捨てるだけなので止まる
+      (trace "SII(SII)" 5)))            ; 自分自身を適用し続ける。止まらない

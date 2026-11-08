@@ -8,6 +8,7 @@
 ./run.sh                                       # 対話シェル (bash) に入る
 ./run.sh rustc --edition 2024 /work/hello.rs   # コンパイルしてカレントに hello を作る
 ./run.sh bash -s < demo.sh                     # 全部を順に実行する
+./run.sh bash -c 'rustc --edition 2024 -o /tmp/r /work/result.rs && /tmp/r'   # 1 本だけ動かす
 ```
 
 `container` (macOS 26 の Apple container) / `docker` / `podman` のいずれかがあれば動きます。
@@ -24,7 +25,8 @@ Debian の apt (trixie) の rustc は 1.85.1 で古めなので、公式イメ�
 | ファイル | 内容 |
 |---|---|
 | `demo/hello.rs` | Hello World |
-| `demo/option_result.rs` | Option / Result / `?` 演算子 (null も例外もない) |
+| `demo/result.rs` | Result と `?` 演算子の最小例 (動画の実行例) |
+| `demo/option_result.rs` | Option / Result / `?` 演算子 (null の代わりに Option を使う) |
 | `demo/patterns.rs` | enum と match、ガード、配列の分解 |
 | `demo/ownership_move.rs` | 所有権の移動。**コンパイルエラーになる** (E0382) |
 | `demo/borrow_conflict.rs` | 借用の衝突。**コンパイルエラーになる** (E0502) |
