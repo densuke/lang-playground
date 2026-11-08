@@ -11,8 +11,8 @@ if ! build_log=$("$rt" build -t lang-lazy-k "$here" 2>&1); then
     printf '%s\n' "$build_log" >&2
     exit 1
 fi
-# TTY が無い経路 (パイプ・収録スクリプト) でも動くよう、-t は端末のときだけ付ける。
-if [ -t 1 ]; then
+# 入力か出力が端末でない経路 (パイプ・リダイレクト・収録スクリプト) でも動くよう、-t は両方が端末のときだけ付ける。
+if [ -t 0 ] && [ -t 1 ]; then
     exec "$rt" run --rm -it -v "$here/demo:/work" lang-lazy-k "$@"
 else
     exec "$rt" run --rm -i -v "$here/demo:/work" lang-lazy-k "$@"

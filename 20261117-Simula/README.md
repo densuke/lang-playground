@@ -6,12 +6,14 @@
 
 ```bash
 ./run.sh                                   # シェルに入る (cim が使える)
-./run.sh bash -c 'cd /work && cim hello.sim && ./hello'   # 1 本をコンパイルして動かす
+./run.sh bash -c 'cd /tmp && cp /work/*.sim . && cim hello.sim && ./hello'   # 1 本をコンパイルして動かす
 ./run.sh bash -s < demo.sh                 # 全部を順に実行する
 ```
 
 `container` (macOS 26 の Apple container) / `docker` / `podman` のいずれかがあれば動きます。
 初回はソースからのビルドで 30 秒ほどかかります。
+
+`cim` は `.o` と実行ファイルをカレントディレクトリへ書き出すので、上のように `/tmp` へコピーして動かすと `demo/` が汚れません。
 
 ## 処理系について
 
@@ -27,7 +29,7 @@ Cim が同梱する事前生成 C に別ディレクトリ前提の include パ�
 
 - `name` `label` `step` などは予約語なので変数名にできません
 - コメントは `!` から最初の `;` まで。日本語は文字列やコードには置けず、コメントの中だけ
-- 仮想手続きの宣言は `VIRTUAL: PROCEDURE area IS REAL PROCEDURE area;;` と `;` が 2 つ
+- 仮想手続きの宣言は、Cim では `VIRTUAL: PROCEDURE area IS REAL PROCEDURE area;;` と `;` が 2 つ必要でした
 - 参照の代入は `:-`、値の代入は `:=`
 
 ## 入っているもの
@@ -38,3 +40,6 @@ Cim が同梱する事前生成 C に別ディレクトリ前提の include パ�
 | `demo/classes.sim` | クラス・継承・仮想手続き・`IS` による型判別 |
 | `demo/coroutine.sim` | `DETACH` / `RESUME` で 2 つのコルーチンを交互に動かす |
 | `demo/bank.sim` | `SIMULATION` クラスによる離散事象シミュレーション (窓口 1 つの銀行) |
+| `demo/shapes.sim` | クラス・接頭クラス (継承に当たる)・仮想手続きの最小例 (動画で端末に出した短い版) |
+| `demo/coro.sim` | `DETACH` / `RESUME` の最小例 (動画で端末に出した短い版) |
+| `demo/cars.sim` | `SIMULATION` と `Hold` の最小例。車 2 台が入って出る (動画で端末に出した短い版) |

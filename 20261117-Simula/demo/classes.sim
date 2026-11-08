@@ -1,7 +1,7 @@
 ! クラスと継承と仮想手続き (Simula 67);
 BEGIN
     CLASS Shape(title); TEXT title;
-    VIRTUAL: PROCEDURE area IS REAL PROCEDURE area;; ! 末尾の2つ目のセミコロンが仕様上必要;
+    VIRTUAL: PROCEDURE area IS REAL PROCEDURE area;; ! 末尾の2つ目のセミコロンは Cim の文法上必要;
     BEGIN
         PROCEDURE show;
         BEGIN

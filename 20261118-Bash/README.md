@@ -26,6 +26,6 @@ macOS 標準の `/bin/bash` は 3.2.57 で、連想配列 (`declare -A`) や `${
 | `demo/hello.sh` | Hello World と版 (`BASH_VERSION`) |
 | `demo/arrays.sh` | 配列と連想配列 |
 | `demo/expand.sh` | パラメータ展開と波括弧展開 |
-| `demo/procsub.sh` | プロセス置換 (`<(...)`)、パイプとの違い |
+| `demo/procsub.sh` | プロセス置換 (`<(...)`)、パイプとの違い (パイプの先はサブシェルで変数が残らない) |
 | `demo/regex.sh` | `[[ ]]` と正規表現 (`BASH_REMATCH`) |
-| `demo/strict.sh` | `set -e` / `-u` / `pipefail` の効果と落とし穴 |
+| `demo/strict.sh` | `set -e` / `pipefail` の効果と、`if` の条件の中で `-e` が効かない落とし穴 |
