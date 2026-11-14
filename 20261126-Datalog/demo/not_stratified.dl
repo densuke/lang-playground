@@ -1,0 +1,9 @@
+// 否定を再帰の中に入れた例。「相手が負ける手があるなら自分は勝つ」を素直に書くと、
+// win が自分自身の否定に依存する。Soufflé は層に分けられないとしてコンパイル時に拒否する。
+.decl move(a: symbol, b: symbol)
+.decl win(p: symbol)
+.output win(IO=stdout)
+
+move("a", "b").
+move("b", "c").
+win(x) :- move(x, y), !win(y).

@@ -1,0 +1,11 @@
+# 失敗が if を決める。比較は成功すると右辺を返す
+procedure main()
+    local y, i
+    y := 4
+    if y < (3 | 5) then write("候補: ", y < (3 | 5))
+    else write("全部失敗")
+    i := (1 to 100) & i * i > 50
+    write("最初の i: ", i)
+    write("出ない: ", 5 < 3)
+    write("ここまで来た")
+end

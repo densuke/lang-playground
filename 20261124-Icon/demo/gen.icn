@@ -1,0 +1,35 @@
+# 手続きもジェネレータにできる。suspend は return と違い、再開すると続きから動く。
+procedure words(str)
+    str ? while tab(upto(&letters)) do {
+        w := tab(many(&letters))
+        suspend w
+    }
+end
+
+# 無限のフィボナッチ列。呼び側が欲しい分だけ取り出す。
+procedure fib()
+    local a, b
+    a := 0
+    b := 1
+    repeat {
+        suspend a
+        a :=: b
+        b +:= a
+    }
+end
+
+procedure main()
+    write("--- 文から単語を取り出す ---")
+    every write(words("Icon: goal-directed evaluation, 1979!"))
+
+    write("--- 最初の 10 個のフィボナッチ数 (\\ で個数制限) ---")
+    every write(fib() \ 10)
+
+    write("--- 100 を超える最初のフィボナッチ数 (100 < fib() は右辺の値を返す) ---")
+    write(100 < fib())
+
+    write("--- 単語の頻度表 ---")
+    count := table(0)
+    every count[words("to be or not to be")] +:= 1
+    every pair := !sort(count) do write(pair[1], " ", pair[2])
+end

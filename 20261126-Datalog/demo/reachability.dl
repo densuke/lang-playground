@@ -1,0 +1,20 @@
+// グラフの到達可能性。辺に循環 (c -> a) がある。到達できない点は否定で求める。
+.decl edge(a: symbol, b: symbol)
+.decl node(n: symbol)
+.decl reach(n: symbol)
+.decl unreachable(n: symbol)
+.output reach(IO=stdout)
+.output unreachable(IO=stdout)
+
+edge("a", "b").
+edge("b", "c").
+edge("c", "a").
+edge("c", "d").
+edge("x", "y").
+node(n) :- edge(n, _).
+node(n) :- edge(_, n).
+
+reach("a").
+reach(y) :- reach(x), edge(x, y).
+// 否定は reach が確定したあとに評価される (層別化)
+unreachable(n) :- node(n), !reach(n).

@@ -1,0 +1,14 @@
+// 左再帰 (再帰の呼び出しが本体の先頭)。
+// Prolog の SLD 解決を素朴に実行すると、先頭の ancestor(X, Z) を呼ぶ手前で無限に再帰する書き方。
+// Datalog は結果の集合を固定点まで増やす評価なので、そのまま止まる。
+.decl parent(p: symbol, c: symbol)
+.decl ancestor(a: symbol, d: symbol)
+.output ancestor(IO=stdout)
+
+parent("太郎", "花子").
+parent("花子", "次郎").
+parent("次郎", "三郎").
+parent("太郎", "四郎").
+
+ancestor(x, y) :- parent(x, y).
+ancestor(x, y) :- ancestor(x, z), parent(z, y).
