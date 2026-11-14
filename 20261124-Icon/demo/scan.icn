@@ -1,0 +1,22 @@
+# 文字列走査: s ? e で s を対象にして、位置を進めながら読む。
+procedure main()
+    line := "a fish is a fish is a fish"
+
+    write("--- 'fish' の出現位置 ---")
+    every write(find("fish", line))
+
+    write("--- 1 文字ずつ move して . をつなぐ ---")
+    t := ""
+    line ? while t := t || move(1) || "."
+    write(t)
+
+    write("--- 日付 2026-11-24 を - で割る ---")
+    "2026-11-24" ? {
+        year := tab(upto('-'))
+        move(1)
+        month := tab(upto('-'))
+        move(1)
+        day := tab(0)
+    }
+    write("年=", year, " 月=", month, " 日=", day)
+end

@@ -1,0 +1,13 @@
+procedure fib(a, b)
+    a := 0; b := 1
+    repeat {
+        suspend a
+        a :=: b
+        b +:= a
+    }
+end
+procedure main()
+    every writes(fib() \ 10, " ")
+    write()
+    write(100 < fib())
+end

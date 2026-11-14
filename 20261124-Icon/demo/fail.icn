@@ -1,0 +1,30 @@
+# 失敗 (値を作れない) が制御を決める。真偽値は無い。
+procedure main()
+    y := 4
+
+    # 比較は成功すると右辺の値を返す。y < 3 は失敗なので 5 が試される。
+    if y < (3 | 5) then write("y より大きい候補: ", y < (3 | 5))
+    else write("どちらも y 以下")
+
+    # 全部失敗するなら else へ
+    if y < (1 | 2 | 3) then write("ありえない") else write("候補は全部失敗")
+
+    # 最初の成功で止まる: 「条件を満たす最初の数」
+    i := (1 to 100) & i * i > 50
+    write("i*i > 50 になる最初の i: ", i)
+
+    # バックトラック: i も j も全部試して、成功した組だけ出る
+    write("--- i*i + j*j = 25 になる組 ---")
+    every i := 1 to 5 do
+        every j := i to 5 do
+            if i * i + j * j = 25 then write(i, " ", j)
+
+    # 失敗は代入も止める。max は x が大きいときだけ更新される
+    max := 3
+    every x := (1 | 7 | 2) do max := (max < x)
+    write("max = ", max)
+
+    # 引数が失敗すると手続き自体が呼ばれない (何も出力されない)
+    write("この行は出ない: ", 5 < 3)
+    write("ここまで来た")
+end

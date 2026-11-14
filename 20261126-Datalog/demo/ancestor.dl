@@ -1,0 +1,12 @@
+// 祖先 = 親関係の推移閉包。ルールは 2 本だけ。
+.decl parent(p: symbol, c: symbol)
+.decl ancestor(a: symbol, d: symbol)
+.output ancestor(IO=stdout)
+
+parent("太郎", "花子").
+parent("花子", "次郎").
+parent("次郎", "三郎").
+parent("太郎", "四郎").
+
+ancestor(x, y) :- parent(x, y).
+ancestor(x, y) :- parent(x, z), ancestor(z, y).
