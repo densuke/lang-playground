@@ -1,0 +1,8 @@
+# every は式の全部の値を引き出す
+procedure main()
+    every writes(1 to 5, " ")
+    write()
+    every writes(!"icon", " ")
+    write()
+    every write((1 to 3), "x", (1 to 2))
+end

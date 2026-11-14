@@ -1,0 +1,8 @@
+// 停止しない例。Soufflé は Datalog に算術 (関数) を足してあるので、
+// 値が無限に増えるルールを書くと固定点に届かない。
+// 純粋な Datalog (関数記号なし・有限のデータ) ではこの形のルールが書けない。
+.decl nat(n: number)
+.output nat(IO=stdout)
+
+nat(0).
+nat(n + 1) :- nat(n).

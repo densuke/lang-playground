@@ -1,0 +1,17 @@
+# 式は 0 個以上の値を作れる。every が全部の値を引き出す。
+procedure main()
+    write("--- 1 to 5 ---")
+    every write(1 to 5)
+
+    write("--- 1|10|100 (| は「次の候補」) ---")
+    every write(1 | 10 | 100)
+
+    write("--- 文字列の文字を 1 つずつ (!s) ---")
+    every write(!"icon")
+
+    write("--- 式の中に入れても every は全部の組を試す ---")
+    every write((1 to 3) * 10)
+
+    write("--- 1 to 3 と 1 to 2 の全組み合わせ ---")
+    every write((1 to 3), "x", (1 to 2))
+end

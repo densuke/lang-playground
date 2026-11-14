@@ -1,0 +1,4 @@
+# 最小の例。write は文字列を出力して、その値を返す。
+procedure main()
+    write("Hello, Icon")
+end

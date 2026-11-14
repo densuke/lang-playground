@@ -112,6 +112,11 @@ cd lang-playground/20260924-Oberon
 | 2026-11-18 | Bash | [20261118-Bash](20261118-Bash) |
 | 2026-11-19 | Forth | [20261119-Forth](20261119-Forth) |
 | 2026-11-20 | Lazy K | [20261120-Lazy_K](20261120-Lazy_K) |
+| 2026-11-23 | FORTRAN | [20261123-FORTRAN](20261123-FORTRAN) |
+| 2026-11-24 | Icon | [20261124-Icon](20261124-Icon) |
+| 2026-11-25 | Swift | [20261125-Swift](20261125-Swift) |
+| 2026-11-26 | Datalog (Soufflé) | [20261126-Datalog](20261126-Datalog) |
+| 2026-11-27 | INTERCAL | [20261127-INTERCAL](20261127-INTERCAL) |
 <!-- langs:end -->
 
 ## ディレクトリの中身
