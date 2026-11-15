@@ -29,6 +29,18 @@ cd lang-playground/20260924-Oberon
 見つかったものを使います。初回はイメージを作るので数分かかります。2 回目以降はキャッシュが
 効くので数秒です。
 
+> **Apple container を使う場合の注意。** `run.sh` は毎回 `container build` を呼びます。
+> オプションなしの `container build` は、ビルド用の builder を既定の割り当て
+> (2 CPU / 2GB) で作り直すことがあり、そのときはビルドのキャッシュも消えます。
+> 処理系をソースからビルドする環境 (Datalog など) では、2GB ではビルドが長引いたり
+> 止まったりします。その場合は割り当てを増やしてイメージを作り、`run.sh` を通さずに
+> 直接起動してください (`run.sh` を使うと builder がまた既定値で作り直されます)。
+>
+> ```bash
+> container build -c 6 -m 12G -t lang-datalog 20261126-Datalog
+> container run --rm -it -v "$PWD/20261126-Datalog/demo:/work" lang-datalog
+> ```
+
 直接コマンドを流すこともできます。
 
 ```bash
