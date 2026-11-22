@@ -129,6 +129,11 @@ cd lang-playground/20260924-Oberon
 | 2026-11-25 | Swift | [20261125-Swift](20261125-Swift) |
 | 2026-11-26 | Datalog (Soufflé) | [20261126-Datalog](20261126-Datalog) |
 | 2026-11-27 | INTERCAL | [20261127-INTERCAL](20261127-INTERCAL) |
+| 2026-11-30 | Go | [20261130-Go](20261130-Go) |
+| 2026-12-01 | Clean | [20261201-Clean](20261201-Clean) |
+| 2026-12-02 | PHP | [20261202-PHP](20261202-PHP) |
+| 2026-12-03 | Zig | [20261203-Zig](20261203-Zig) |
+| 2026-12-04 | Brainfuck | [20261204-Brainfuck](20261204-Brainfuck) |
 <!-- langs:end -->
 
 ## ディレクトリの中身
